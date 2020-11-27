@@ -1,0 +1,14 @@
+diff --git a/./config/cmake/hdf5-config.cmake.in.orig b/./config/cmake/hdf5-config.cmake.in
+index b5a12a6..1ba5d45 100644
+--- a/./config/cmake/hdf5-config.cmake.in
++++ b/./config/cmake/hdf5-config.cmake.in
+@@ -12,6 +12,9 @@
+ #-----------------------------------------------------------------------------
+ # HDF5 Config file for compiling against hdf5 build/install directory
+ #-----------------------------------------------------------------------------
++include(CMakeFindDependencyMacro)
++find_dependency(ZLIB)
++
+ @PACKAGE_INIT@
+ 
+ string(TOUPPER @HDF5_PACKAGE@ HDF5_PACKAGE_NAME)

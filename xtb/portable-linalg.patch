@@ -1,0 +1,26 @@
+diff --git a/CMakeLists.orig b/CMakeLists.txt
+index 493d647..00618e9 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -43,8 +43,8 @@ target_include_directories(xtb-object
+ add_library(lib-xtb-static STATIC $<TARGET_OBJECTS:xtb-object> )
+ target_link_libraries(lib-xtb-static
+   PUBLIC
+-  ${BLAS_LIBRARIES}
+-  ${LAPACK_LIBRARIES}
++  LAPACK::LAPACK
++  BLAS::BLAS
+   $<$<BOOL:${OpenMP_Fortran_FOUND}>:OpenMP::OpenMP_Fortran>
+ )
+ set_target_properties(lib-xtb-static PROPERTIES
+@@ -63,8 +63,8 @@ target_include_directories(lib-xtb-static
+ add_library(lib-xtb-shared SHARED $<TARGET_OBJECTS:xtb-object> )
+ target_link_libraries(lib-xtb-shared
+   PUBLIC
+-  ${BLAS_LIBRARIES}
+-  ${LAPACK_LIBRARIES}
++  LAPACK::LAPACK
++  BLAS::BLAS
+   $<$<BOOL:${OpenMP_Fortran_FOUND}>:OpenMP::OpenMP_Fortran>
+ )
+ set_target_properties(lib-xtb-shared PROPERTIES

@@ -1,0 +1,20 @@
+diff --git a/CMakeFilters.cmake.orig b/CMakeFilters.cmake
+index 9955637..3202149 100644
+--- a/CMakeFilters.cmake
++++ b/CMakeFilters.cmake
+@@ -53,8 +53,13 @@ if (HDF5_ENABLE_Z_LIB_SUPPORT)
+       if (NOT ZLIB_FOUND)
+         find_package (ZLIB) # Legacy find
+         if (ZLIB_FOUND)
+-          set (LINK_COMP_LIBS ${LINK_COMP_LIBS} ${ZLIB_LIBRARIES})
+-          set (LINK_COMP_SHARED_LIBS ${LINK_COMP_SHARED_LIBS} ${ZLIB_LIBRARIES})
++          if(TARGET ZLIB::ZLIB)
++            set(LINK_COMP_LIBS ${LINK_COMP_LIBS} ZLIB::ZLIB)
++            set(LINK_COMP_SHARED_LIBS ${LINK_COMP_SHARED_LIBS} ZLIB::ZLIB)
++          else()
++            set (LINK_COMP_LIBS ${LINK_COMP_LIBS} ${ZLIB_LIBRARIES})
++            set (LINK_COMP_SHARED_LIBS ${LINK_COMP_SHARED_LIBS} ${ZLIB_LIBRARIES})
++          endif()
+         endif ()
+       endif ()
+     endif ()

@@ -1,0 +1,18 @@
+--- CMakeLists.txt	2020-03-11 12:13:34.451947602 +0100
++++ CMakeLists.txt	2020-03-11 12:13:43.424055839 +0100
+@@ -203,11 +203,11 @@
+ target_compile_definitions(mongocxx_mocked PRIVATE ${libmongoc_definitions})
+ 
+ if (BUILD_SHARED_LIBS)
+-    target_link_libraries(mongocxx PUBLIC bsoncxx PRIVATE ${libmongoc_libraries})
+-    target_link_libraries(mongocxx_mocked PUBLIC bsoncxx PRIVATE ${libmongoc_libraries})
++    target_link_libraries(mongocxx PUBLIC bsoncxx dl PRIVATE ${libmongoc_libraries})
++    target_link_libraries(mongocxx_mocked PUBLIC bsoncxx dl PRIVATE ${libmongoc_libraries})
+ else()
+-    target_link_libraries(mongocxx bsoncxx ${libmongoc_libraries})
+-    target_link_libraries(mongocxx_mocked bsoncxx ${libmongoc_libraries})
++    target_link_libraries(mongocxx bsoncxx dl ${libmongoc_libraries})
++    target_link_libraries(mongocxx_mocked bsoncxx dl ${libmongoc_libraries})
+ endif()
+ 
+ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
